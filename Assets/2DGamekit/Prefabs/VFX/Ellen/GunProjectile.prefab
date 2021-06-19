@@ -4833,7 +4833,7 @@ GameObject:
   - component: {fileID: 212479798347525714}
   - component: {fileID: 114442081226539470}
   m_Layer: 0
-  m_Name: SpitProjectille
+  m_Name: GunProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4883,9 +4883,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -4914,7 +4914,7 @@ MonoBehaviour:
   ignoreInvincibility: 0
   hittableLayers:
     serializedVersion: 2
-    m_Bits: 2147492096
+    m_Bits: 3221558033
   OnDamageableHit:
     m_PersistentCalls:
       m_Calls:
@@ -4930,9 +4930,45 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114793620227127496}
+        m_TargetAssemblyTypeName: Gamekit2D.Bullet, Assembly-CSharp
+        m_MethodName: OnHitDamageable
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnNonDamageableHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114793620227127496}
+        m_TargetAssemblyTypeName: Gamekit2D.Bullet, Assembly-CSharp
+        m_MethodName: ReturnToPool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114793620227127496}
+        m_TargetAssemblyTypeName: Gamekit2D.Bullet, Assembly-CSharp
+        m_MethodName: OnHitNonDamageable
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &114793620227127496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4990,7 +5026,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 86d5ee14dfb5a6342ad6aae1133f4561, type: 3}
-  m_Color: {r: 0.4645031, g: 1, b: 0.029411793, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.03757763, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
