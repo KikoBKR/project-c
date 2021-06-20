@@ -4914,7 +4914,7 @@ MonoBehaviour:
   ignoreInvincibility: 0
   hittableLayers:
     serializedVersion: 2
-    m_Bits: 3221558033
+    m_Bits: 3221557776
   OnDamageableHit:
     m_PersistentCalls:
       m_Calls:

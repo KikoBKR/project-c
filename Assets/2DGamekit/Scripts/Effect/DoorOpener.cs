@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class DoorOpener : MonoBehaviour
 {
-    // number of pads needed to open the door
-    private int pressurePads = 2;
+    // number of signals needed to open the door
+    public int _signals = 2;
+
+    private int counter;
 
     public Animator doorAnimator;
 
-    private GameObject[] pads;
+    private GameObject[] signalers;
 
     private int i = 0;
 
@@ -24,8 +26,8 @@ public class DoorOpener : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pressurePads = 2;
-        pads = new GameObject[pressurePads];
+        counter = _signals;
+        signalers = new GameObject[_signals];
         i = 0;
     }
 
@@ -54,16 +56,16 @@ public class DoorOpener : MonoBehaviour
     }
 
     // A platform sends a signal, so decrease the number of needed pads remaining
-    public void SendSignal(GameObject pressurePad)
+    public void SendSignal(GameObject Signal)
     {
-        foreach (GameObject pad in pads)
-            if (pad == pressurePad)
+        foreach (GameObject signal in signalers)
+            if (Signal == signal)
                 return;
 
-        pads[i++] = pressurePad;
+        signalers[i++] = Signal;
 
-        pressurePads--;
-        if (pressurePads == 0)
+        counter--;
+        if (counter == 0)
             doorAnimator.Play("DoorOpening");
     }
 
