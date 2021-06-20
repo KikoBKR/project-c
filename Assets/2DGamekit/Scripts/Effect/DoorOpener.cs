@@ -13,6 +13,14 @@ public class DoorOpener : MonoBehaviour
 
     private int i = 0;
 
+    private bool invokedDelay = false;
+
+    private bool delaying = false;
+
+    private float startTime = 0.0f;
+
+    private float Delay = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +35,26 @@ public class DoorOpener : MonoBehaviour
         
     }
 
+    private void FixedUpdate()
+    {
+        if (invokedDelay)
+        {
+            invokedDelay = !invokedDelay;
+            delaying = true;
+        }
+
+        if (delaying)
+        {
+            if (Time.time - startTime >= Delay)
+            {
+                delaying = false;
+                doorAnimator.Play("DoorOpening");
+            }
+        }
+    }
+
     // A platform sends a signal, so decrease the number of needed pads remaining
-    public void sendSignal(GameObject pressurePad)
+    public void SendSignal(GameObject pressurePad)
     {
         foreach (GameObject pad in pads)
             if (pad == pressurePad)
@@ -39,5 +65,12 @@ public class DoorOpener : MonoBehaviour
         pressurePads--;
         if (pressurePads == 0)
             doorAnimator.Play("DoorOpening");
+    }
+
+    public void OpenWithDelay(float delay)
+    {
+        Delay = delay;
+        invokedDelay = true;
+        startTime = Time.time;
     }
 }
