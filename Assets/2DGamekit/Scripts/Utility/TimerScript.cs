@@ -2,32 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static System.Math;
+using UnityEngine.SceneManagement;
 
 namespace Gamekit2D
 {
 
     public class TimerScript : MonoBehaviour
     {
-        public int _time = 60;
+        public int _time = 180;
 
-        public Gamekit2D.DialogueCanvasController _dialogueBox;
+        private Gamekit2D.DialogueCanvasController _dialogueBox;
 
-        public Gamekit2D.PlayerCharacter _player;
+        private Gamekit2D.PlayerCharacter _player;
 
         private bool active = false;
 
         private float activatedTime;
 
-        // Start is called before the first frame update
-        void Start()
+        void OnEnable()
         {
-
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
-        // Update is called once per frame
-        void Update()
+        void OnDisable()
         {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
 
+
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            _dialogueBox = GameObject.FindObjectOfType<Gamekit2D.DialogueCanvasController>(true);
+            Debug.Log(_dialogueBox);
+            _player = GameObject.FindObjectOfType<Gamekit2D.PlayerCharacter>();
+            Debug.Log(_player);
         }
 
         private void FixedUpdate()

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Difficulty Setting
+  - Timer
   layers:
   - Default
   - TransparentFX

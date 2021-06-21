@@ -12,11 +12,7 @@ public class DifficultySetter : MonoBehaviour
 
     public Gamekit2D.Damager _spitProjectile;
 
-    // Start is called before the first frame update
-    void Start()
-    {
- 
-    }
+    private bool setTimer = false
 
     void OnEnable()
     {
@@ -30,7 +26,6 @@ public class DifficultySetter : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log(scene);
         SetDiffPlatSpeed(_platformSpeedMultiplier);
         SetDiffEnemHealth(_enemyHealth);
         SetDiffEnemDmg(_enemyDamage);
@@ -52,7 +47,6 @@ public class DifficultySetter : MonoBehaviour
         foreach (Gamekit2D.MovingPlatform platform in platforms)
         {
             platform.speed *= platSpeed;
-            Debug.Log(platform);
         }
     }
 
@@ -94,8 +88,13 @@ public class DifficultySetter : MonoBehaviour
         if (Timer == null)
             return;
 
-        Gamekit2D.TimerScript script = Timer.GetComponentInChildren<Gamekit2D.TimerScript>();
+        if (!setTimer)
+        {
+            setTimer = true;
 
-        script._time = script._time - _escapeTime;
+            Gamekit2D.TimerScript script = Timer.GetComponentInChildren<Gamekit2D.TimerScript>();
+
+            script._time = script._time - _escapeTime;
+        }
     }
 }
