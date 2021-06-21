@@ -712,7 +712,7 @@ namespace Gamekit2D
             StartCoroutine(DieRespawnCoroutine(true, false));
         }
 
-        IEnumerator DieRespawnCoroutine(bool resetHealth, bool useCheckPoint)
+        public IEnumerator DieRespawnCoroutine(bool resetHealth, bool useCheckPoint)
         {
             PlayerInput.Instance.ReleaseControl(true);
             yield return new WaitForSeconds(1.0f); //wait one second before respawing
