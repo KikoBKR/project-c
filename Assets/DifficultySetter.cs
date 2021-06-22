@@ -12,7 +12,7 @@ public class DifficultySetter : MonoBehaviour
 
     public Gamekit2D.Damager _spitProjectile;
 
-    private bool setTimer = false
+    private bool setTimer = false;
 
     void OnEnable()
     {
@@ -32,10 +32,11 @@ public class DifficultySetter : MonoBehaviour
         SetTimer(_escapeTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        Debug.Log("Hey");
+        // disable the Player Input
+        GameObject.FindObjectOfType<Gamekit2D.PlayerInput>().ReleaseControl();
     }
 
     public void SetDiffPlatSpeed(float platSpeed)

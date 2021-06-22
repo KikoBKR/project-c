@@ -33,9 +33,9 @@ namespace Gamekit2D
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             _dialogueBox = GameObject.FindObjectOfType<Gamekit2D.DialogueCanvasController>(true);
-            Debug.Log(_dialogueBox);
+            
             _player = GameObject.FindObjectOfType<Gamekit2D.PlayerCharacter>();
-            Debug.Log(_player);
+            
         }
 
         private void FixedUpdate()

@@ -66,7 +66,11 @@ public class DoorOpener : MonoBehaviour
 
         counter--;
         if (counter == 0)
+        {
             doorAnimator.Play("DoorOpening");
+            Gamekit2D.DoorPlatformMaintain manager = GameObject.FindObjectOfType<Gamekit2D.DoorPlatformMaintain>();
+            manager.AddDoor(gameObject);
+        }
     }
 
     public void OpenWithDelay(float delay)
