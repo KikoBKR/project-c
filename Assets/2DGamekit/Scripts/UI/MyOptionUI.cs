@@ -16,6 +16,9 @@ namespace Gamekit2D
         {
             ExitPause();
             GameObject.FindObjectOfType<Gamekit2D.DoorPlatformMaintain>().Restart();
+            Gamekit2D.TimerScript timer = GameObject.FindObjectOfType<Gamekit2D.TimerScript>();
+            if (timer != null)
+                timer.DeActivate();
             SceneManager.LoadScene(0);
             GameObject.FindObjectOfType<Gamekit2D.DifficultySetter>().Restart();
         }
