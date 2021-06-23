@@ -39,12 +39,14 @@ namespace Gamekit2D
         {
             int currentScene = scene.buildIndex;
 
-            foreach (string doorName in _doors[currentScene])
+            if (currentScene < 2)
+            {
+                foreach (string doorName in _doors[currentScene])
                     GameObject.Find(doorName).SetActive(false);
-            
-            foreach (string triggerName in _triggers[currentScene])
+
+                foreach (string triggerName in _triggers[currentScene])
                     GameObject.Find(triggerName).SetActive(false);
-            
+            }
         }
         public void AddDoor(GameObject door)
         {
@@ -60,6 +62,11 @@ namespace Gamekit2D
                 _doors[currentScene].Add(trigger.name);
         }
 
+
+        public void Restart()
+        {
+            Awake();
+        }
     }
 
 }

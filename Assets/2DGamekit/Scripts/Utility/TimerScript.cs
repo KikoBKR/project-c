@@ -64,6 +64,17 @@ namespace Gamekit2D
             active = true;
             activatedTime = Time.time;
         }
+
+        public void DeActivate()
+        {
+            active = false;
+            _dialogueBox.DeactivateCanvasWithDelay(0.0f);
+        }
+
+        public bool IsActivated()
+        {
+            return active;
+        }
     }
 
 }

@@ -8,6 +8,7 @@ TagManager:
   - Difficulty Setting
   - Timer
   - DoorPlatformManager
+  - DiffCanvas
   layers:
   - Default
   - TransparentFX

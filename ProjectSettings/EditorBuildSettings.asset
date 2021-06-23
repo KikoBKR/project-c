@@ -24,12 +24,6 @@ EditorBuildSettings:
     path: Assets/2DGamekit/Scenes/Zone5.unity
     guid: 960b12f881940d84983273421bebc695
   - enabled: 0
-    path: Assets/2DGamekit/Scenes/UI/UIMenus.unity
-    guid: 705f1f73151a73046842d4e4ec8f514d
-  - enabled: 0
-    path: Assets/2DGamekit/Scenes/UI/Loading.unity
-    guid: ebc4647ff02971c4ba1b207af066be4d
-  - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
@@ -50,4 +44,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Cave.unity
     guid: 224e1f49262ffbf4c827c075086bce40
+  - enabled: 1
+    path: Assets/2DGamekit/Scenes/UI/Loading.unity
+    guid: ebc4647ff02971c4ba1b207af066be4d
+  - enabled: 0
+    path: Assets/2DGamekit/Scenes/UI/UIMenus.unity
+    guid: 705f1f73151a73046842d4e4ec8f514d
+  - enabled: 1
+    path: Assets/2DGamekit/Scenes/UI/MyUIMenu.unity
+    guid: 64675e26d2538a543a5fb684816f3f79
   m_configObjects: {}

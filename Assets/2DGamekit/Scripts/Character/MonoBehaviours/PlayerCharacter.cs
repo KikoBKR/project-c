@@ -190,7 +190,7 @@ namespace Gamekit2D
                     PlayerInput.Instance.Pause.GainControl();
                     m_InPause = true;
                     Time.timeScale = 0;
-                    UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("UIMenus", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+                    UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("MyUIMenu", UnityEngine.SceneManagement.LoadSceneMode.Additive);
                 }
                 else
                 {
@@ -220,7 +220,7 @@ namespace Gamekit2D
         protected IEnumerator UnpauseCoroutine()
         {
             Time.timeScale = 1;
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("UIMenus");
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("MyUIMenu");
             PlayerInput.Instance.GainControl();
             //we have to wait for a fixed update so the pause button state change, otherwise we can get in case were the update
             //of this script happen BEFORE the input is updated, leading to setting the game in pause once again
@@ -719,7 +719,10 @@ namespace Gamekit2D
             yield return StartCoroutine(ScreenFader.FadeSceneOut(useCheckPoint ? ScreenFader.FadeType.Black : ScreenFader.FadeType.GameOver));
             if(!useCheckPoint)
                 yield return new WaitForSeconds (2f);
-            Respawn(resetHealth, useCheckPoint);
+            if (useCheckPoint)
+                Respawn(resetHealth, useCheckPoint);
+            else
+                Gamekit2D.MyOptionUI.StaticRestartLevel();
             yield return new WaitForEndOfFrame();
             yield return StartCoroutine(ScreenFader.FadeSceneIn());
             PlayerInput.Instance.GainControl();
