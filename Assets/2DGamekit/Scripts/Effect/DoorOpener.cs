@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorOpener : MonoBehaviour
 {
@@ -31,13 +32,22 @@ public class DoorOpener : MonoBehaviour
         i = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnEnable()
     {
-        
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
     }
 
-    private void FixedUpdate()
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+    }
+
+    void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+    {
+        Start();
+    }
+
+        private void FixedUpdate()
     {
         if (invokedDelay)
         {
@@ -58,6 +68,7 @@ public class DoorOpener : MonoBehaviour
     // A platform sends a signal, so decrease the number of needed pads remaining
     public void SendSignal(GameObject Signal)
     {
+        // Debug.Log(signalers);
         foreach (GameObject signal in signalers)
             if (Signal == signal)
                 return;
@@ -68,9 +79,15 @@ public class DoorOpener : MonoBehaviour
         if (counter == 0)
         {
             doorAnimator.Play("DoorOpening");
-            Gamekit2D.DoorPlatformMaintain manager = GameObject.FindObjectOfType<Gamekit2D.DoorPlatformMaintain>();
-            manager.AddDoor(gameObject);
+            AddSelf();
         }
+    }
+
+    void AddSelf()
+    {
+        Gamekit2D.DoorPlatformMaintain manager = GameObject.FindObjectOfType<Gamekit2D.DoorPlatformMaintain>();
+        if (manager != null)
+            manager.AddDoor(gameObject);
     }
 
     public void OpenWithDelay(float delay)

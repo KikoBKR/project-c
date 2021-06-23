@@ -12,7 +12,7 @@ namespace Gamekit2D
 
         private List<string>[] _triggers;
 
-        private void Awake()
+        private void Start()
         {
             _doors = new List<string>[2];
             _triggers = new List<string>[2];
@@ -38,6 +38,9 @@ namespace Gamekit2D
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             int currentScene = scene.buildIndex;
+
+            if (_doors == null)
+                Start();
 
             if (currentScene < 2)
             {
@@ -65,7 +68,7 @@ namespace Gamekit2D
 
         public void Restart()
         {
-            Awake();
+            Start();
         }
     }
 

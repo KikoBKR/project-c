@@ -15,6 +15,7 @@ namespace Gamekit2D
         public void RestartLevel()
         {
             ExitPause();
+            GameObject.FindObjectOfType<Gamekit2D.DoorPlatformMaintain>().Restart();
             SceneManager.LoadScene(0);
             GameObject.FindObjectOfType<Gamekit2D.DifficultySetter>().Restart();
         }
