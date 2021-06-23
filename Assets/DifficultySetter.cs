@@ -33,6 +33,7 @@ namespace Gamekit2D
             SceneManager.sceneLoaded -= OnLevelFinishedLoading;
         }
 
+        // to deactivate thePlayerInput with a slight delay
         private void FixedUpdate()
         {
             if (deactivate)
@@ -129,6 +130,10 @@ namespace Gamekit2D
 
         public void Restart()
         {
+            _platformSpeedMultiplier = 1;
+            _enemyHealth = 1;
+            _enemyDamage = 1;
+            _escapeTime = 0;
             Start();
         }
     }
